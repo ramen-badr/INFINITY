@@ -113,7 +113,7 @@ class MainActivity : ComponentActivity() {
                         .padding(24.dp, top = 32.dp, bottom = 24.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.logo),
+                        painter = painterResource(id = R.mipmap.logo),
                         contentDescription = "Logo",
                         modifier = Modifier.size(48.dp)
                     )
