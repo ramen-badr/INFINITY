@@ -69,7 +69,7 @@ data class ServiceResponse(
     val name: String
 )
 
-class SecondActivity : ComponentActivity() {
+class ServicesActivity : ComponentActivity() {
     private val client = OkHttpClient()
     private val gson = Gson()
 
@@ -131,7 +131,7 @@ class SecondActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.mipmap.logo),
-                    contentDescription = "Logo",
+                    contentDescription = "Логотип компании",
                     modifier = Modifier.size(48.dp)
                 )
 
@@ -180,7 +180,7 @@ class SecondActivity : ComponentActivity() {
                         }) {
                             Image(
                                 painter = painterResource(id = R.drawable.arrowleft),
-                                contentDescription = "Back",
+                                contentDescription = "Назад по галерее",
                                 modifier = Modifier.requiredSize(32.dp)
                             )
                         }
@@ -199,7 +199,7 @@ class SecondActivity : ComponentActivity() {
                         }) {
                             Image(
                                 painter = painterResource(id = R.drawable.arrowright),
-                                contentDescription = "Forward",
+                                contentDescription = "Вперед по галерее",
                                 modifier = Modifier.requiredSize(32.dp)
                             )
                         }
@@ -237,7 +237,7 @@ class SecondActivity : ComponentActivity() {
                                 )
                                 Icon(
                                     painter = painterResource(id = R.drawable.arrowright),
-                                    contentDescription = "Scroll",
+                                    contentDescription = "Листай вправо галерею",
                                     tint = Color.White
                                 )
                             }
@@ -268,7 +268,7 @@ class SecondActivity : ComponentActivity() {
                         Button(
                             onClick = {
                                 List = mutableStateListOf<Long>(list[currentImageIndex].id.toLong())
-                                context.startActivity(Intent(context, FifthActivity::class.java))
+                                context.startActivity(Intent(context, OrderActivity::class.java))
                                 (context as Activity).finish()},
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -302,7 +302,7 @@ class SecondActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.home),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на главную страницу",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -310,16 +310,16 @@ class SecondActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, SecondActivity::class.java))
+                        context.startActivity(Intent(context, ServicesActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
                         modifier = Modifier
-                            .requiredSize(size = 40.dp)
+                            .requiredSize(size = 36.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.services),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на страницу услуг",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -327,7 +327,7 @@ class SecondActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, ThirdActivity::class.java))
+                        context.startActivity(Intent(context, CartActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -336,7 +336,7 @@ class SecondActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.cart),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти в корзину",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -344,7 +344,7 @@ class SecondActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, FourthActivity::class.java))
+                        context.startActivity(Intent(context, HistoryActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -353,7 +353,7 @@ class SecondActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.history),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти к истории покупок",
                             modifier = Modifier
                                 .fillMaxSize())
                     }

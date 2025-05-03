@@ -59,7 +59,7 @@ import okhttp3.Request
 
 val CartItems = mutableListOf<ServiceResponse>()
 
-class ThirdActivity : ComponentActivity() {
+class CartActivity : ComponentActivity() {
     private val client = OkHttpClient()
     private val selectedIds = mutableStateListOf<Long>()
 
@@ -91,7 +91,7 @@ class ThirdActivity : ComponentActivity() {
                     if (isChecked) {
                         Image(
                             painter = painterResource(R.drawable.checkmark),
-                            contentDescription = "Checked",
+                            contentDescription = "Услуга успешно выбрана",
                             modifier = Modifier.size(32.dp)
                         )
                     } else {
@@ -115,7 +115,7 @@ class ThirdActivity : ComponentActivity() {
             Button(
                 onClick = {
                     List = mutableStateListOf<Long>(data.id.toLong())
-                    context.startActivity(Intent(context, FifthActivity::class.java))
+                    context.startActivity(Intent(context, OrderActivity::class.java))
                     (context as Activity).finish()},
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -141,7 +141,6 @@ class ThirdActivity : ComponentActivity() {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-            // Header
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -153,7 +152,7 @@ class ThirdActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.mipmap.logo),
-                    contentDescription = "Logo",
+                    contentDescription = "Логотип компании",
                     modifier = Modifier.size(48.dp)
                 )
 
@@ -173,7 +172,6 @@ class ThirdActivity : ComponentActivity() {
                 }
             }
 
-            // Main Content
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
                 modifier = Modifier
@@ -183,8 +181,7 @@ class ThirdActivity : ComponentActivity() {
                 if (CartItems.isEmpty()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(24.dp),
+                            .fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -192,12 +189,30 @@ class ThirdActivity : ComponentActivity() {
                             verticalArrangement = Arrangement.spacedBy(24.dp)
                         ) {
                             Text(
-                                text = "Пока у вас нет заказов",
+                                text = "Пока у вас ничего не добавлено",
                                 style = type_Body,
                                 color = Color.Gray,
-                                modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center
                             )
+                            Button(
+                                onClick = {
+                                    context.startActivity(
+                                        Intent(
+                                            context,
+                                            ServicesActivity::class.java
+                                        )
+                                    )
+                                    (context as Activity).finish()
+                                },
+                                shape = RoundedCornerShape(16.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color.Black,
+                                    contentColor = Color.White
+                                ),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text("Услуги", style = type_Button)
+                            }
                         }
                     }
                 } else {
@@ -222,11 +237,10 @@ class ThirdActivity : ComponentActivity() {
                     }
                 }
 
-                // Checkout Button
                 Button(
                     onClick = {
                         List = selectedIds
-                        context.startActivity(Intent(context, FifthActivity::class.java))
+                        context.startActivity(Intent(context, OrderActivity::class.java))
                         (context as Activity).finish()},
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -240,7 +254,6 @@ class ThirdActivity : ComponentActivity() {
                 }
             }
 
-            // Bottom Navigation
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically,
@@ -260,7 +273,7 @@ class ThirdActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.home),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на главную страницу",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -268,16 +281,16 @@ class ThirdActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, SecondActivity::class.java))
+                        context.startActivity(Intent(context, ServicesActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
                         modifier = Modifier
-                            .requiredSize(size = 40.dp)
+                            .requiredSize(size = 36.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.services),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на страницу услуг",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -285,7 +298,7 @@ class ThirdActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, ThirdActivity::class.java))
+                        context.startActivity(Intent(context, CartActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -294,7 +307,7 @@ class ThirdActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.cart),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти в корзину",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -302,7 +315,7 @@ class ThirdActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, FourthActivity::class.java))
+                        context.startActivity(Intent(context, HistoryActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -311,7 +324,7 @@ class ThirdActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.history),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти к истории покупок",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -352,7 +365,7 @@ class ThirdActivity : ComponentActivity() {
                 )
                 imageBitmap != null -> Image(
                     bitmap = imageBitmap!!,
-                    contentDescription = "Item Image",
+                    contentDescription = "Изображение добавленного в корзину товара",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )

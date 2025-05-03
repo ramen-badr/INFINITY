@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.image),
-                contentDescription = "background",
+                contentDescription = "Фон страницы",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxSize()
@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Image(
                         painter = painterResource(id = R.mipmap.logo),
-                        contentDescription = "Logo",
+                        contentDescription = "Логотип компании",
                         modifier = Modifier.size(48.dp)
                     )
 
@@ -145,7 +145,7 @@ class MainActivity : ComponentActivity() {
                 Button(
                     onClick = {
                         List = mutableStateListOf<Long>()
-                        context.startActivity(Intent(context, SecondActivity::class.java))
+                        context.startActivity(Intent(context, ServicesActivity::class.java))
                         (context as Activity).finish()},
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -184,7 +184,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.home),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на главную страницу",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -192,16 +192,16 @@ class MainActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, SecondActivity::class.java))
+                        context.startActivity(Intent(context, ServicesActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
                         modifier = Modifier
-                            .requiredSize(size = 40.dp)
+                            .requiredSize(size = 36.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.services),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на страницу услуг",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -209,7 +209,7 @@ class MainActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, ThirdActivity::class.java))
+                        context.startActivity(Intent(context, CartActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -218,7 +218,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.cart),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти в корзину",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -226,7 +226,7 @@ class MainActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, FourthActivity::class.java))
+                        context.startActivity(Intent(context, HistoryActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -235,7 +235,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.history),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти к истории покупок",
                             modifier = Modifier
                                 .fillMaxSize())
                     }

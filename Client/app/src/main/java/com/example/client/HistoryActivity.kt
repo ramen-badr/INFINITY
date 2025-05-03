@@ -79,7 +79,7 @@ data class ServiceDetails(
     val name: String
 )
 
-class FourthActivity : ComponentActivity() {
+class HistoryActivity : ComponentActivity() {
     private val client = OkHttpClient()
     private val gson = Gson()
 
@@ -121,6 +121,7 @@ class FourthActivity : ComponentActivity() {
 
             Button(
                 onClick = onAddToCart,
+                shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Black,
                     contentColor = Color.White
@@ -186,7 +187,7 @@ class FourthActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.mipmap.logo),
-                    contentDescription = "Logo",
+                    contentDescription = "Логотип компании",
                     modifier = Modifier.size(48.dp)
                 )
 
@@ -211,12 +212,10 @@ class FourthActivity : ComponentActivity() {
                     CircularProgressIndicator()
                 }
             } else if (error != null && phoneNumber != "") {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(
-                        text = "Непредвиденная ошибка",
+                Box(modifier = Modifier.weight(1f).fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(text = "Непредвиденная ошибка",
                         style = type_Button,
-                        color = Color.Red
-                    )
+                        color = Color.Red)
                 }
             } else {
                 Column(
@@ -226,11 +225,9 @@ class FourthActivity : ComponentActivity() {
                         .padding(24.dp)
                 ) {
                     if (historyItems.isEmpty()) {
-                        // Empty state
                         Box(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(24.dp),
+                                .fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
                             Column(
@@ -238,27 +235,27 @@ class FourthActivity : ComponentActivity() {
                                 verticalArrangement = Arrangement.spacedBy(24.dp)
                             ) {
                                 Text(
-                                    text = "Пока у вас ничего не добавлено",
+                                    text = "Пока у вас нет заказов",
                                     style = type_Body,
                                     color = Color.Gray,
                                     textAlign = TextAlign.Center
                                 )
-
                                 Button(
                                     onClick = {
                                         context.startActivity(
                                             Intent(
                                                 context,
-                                                SecondActivity::class.java
+                                                ServicesActivity::class.java
                                             )
                                         )
                                         (context as Activity).finish()
                                     },
+                                    shape = RoundedCornerShape(16.dp),
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = Color.Black,
                                         contentColor = Color.White
                                     ),
-                                    modifier = Modifier.fillMaxWidth(0.8f)
+                                    modifier = Modifier.fillMaxWidth()
                                 ) {
                                     Text("Услуги", style = type_Button)
                                 }
@@ -287,8 +284,8 @@ class FourthActivity : ComponentActivity() {
             ) {
                 IconButton(
                     onClick = {
-                        val intent = Intent(context, MainActivity::class.java)
-                        context.startActivity(intent)},
+                        context.startActivity(Intent(context, MainActivity::class.java))
+                        (context as Activity).finish()},
                 ) {
                     Box(
                         modifier = Modifier
@@ -296,7 +293,7 @@ class FourthActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.home),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на главную страницу",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -304,16 +301,16 @@ class FourthActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, SecondActivity::class.java))
+                        context.startActivity(Intent(context, ServicesActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
                         modifier = Modifier
-                            .requiredSize(size = 40.dp)
+                            .requiredSize(size = 36.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.services),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти на страницу услуг",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -321,7 +318,7 @@ class FourthActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, ThirdActivity::class.java))
+                        context.startActivity(Intent(context, CartActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -330,7 +327,7 @@ class FourthActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.cart),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти в корзину",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -338,7 +335,7 @@ class FourthActivity : ComponentActivity() {
                 }
                 IconButton(
                     onClick = {
-                        context.startActivity(Intent(context, FourthActivity::class.java))
+                        context.startActivity(Intent(context, HistoryActivity::class.java))
                         (context as Activity).finish()},
                 ) {
                     Box(
@@ -347,7 +344,7 @@ class FourthActivity : ComponentActivity() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.history),
-                            contentDescription = "Vector",
+                            contentDescription = "Перейти к истории покупок",
                             modifier = Modifier
                                 .fillMaxSize())
                     }
@@ -471,7 +468,7 @@ class FourthActivity : ComponentActivity() {
                 )
                 imageBitmap != null -> Image(
                     bitmap = imageBitmap!!,
-                    contentDescription = "Image",
+                    contentDescription = "Изображение заказанного товара",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxWidth()
                         .heightIn(min = 200.dp, max = 300.dp)
