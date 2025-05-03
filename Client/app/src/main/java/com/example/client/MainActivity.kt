@@ -20,17 +20,12 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -40,9 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.client.ui.theme.AppTypes.type_1
 import com.example.client.ui.theme.AppTypes.type_2
 import com.example.client.ui.theme.AppTypes.type_Body
@@ -52,40 +45,6 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Home(modifier: Modifier = Modifier) {
         val context = LocalContext.current
-        var showDialog2 by remember { mutableStateOf(false) }
-
-        if (showDialog2) {
-            AlertDialog(
-                onDismissRequest = { showDialog2 = false },
-                title = {
-                    Text(
-                        text = "Ваша заявка принята!",
-                        style = type_2.copy(
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                },
-                text = {
-                    Text("В ближайшее время с вами свяжется специалист")
-                },
-                confirmButton = {
-                    Button(
-                        onClick = {
-                            showDialog2 = false
-                            context.startActivity(Intent(context, MainActivity::class.java))
-                            (context as Activity).finish()
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
-                    ) {
-                        Text("На главную", style = type_Button)
-                    }
-                }
-            )
-        }
 
         Box(
             modifier = modifier
@@ -186,7 +145,7 @@ class MainActivity : ComponentActivity() {
                 Button(
                     onClick = {
                         List = mutableStateListOf<Long>()
-                        context.startActivity(Intent(context, FifthActivity::class.java))
+                        context.startActivity(Intent(context, SecondActivity::class.java))
                         (context as Activity).finish()},
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(

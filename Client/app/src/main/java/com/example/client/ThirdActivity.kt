@@ -24,7 +24,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -47,10 +46,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.client.ui.theme.AppTypes.type_1
 import com.example.client.ui.theme.AppTypes.type_2
 import com.example.client.ui.theme.AppTypes.type_Body
@@ -137,40 +134,6 @@ class ThirdActivity : ComponentActivity() {
     @Composable
     fun CartScreen(modifier: Modifier = Modifier) {
         val context = LocalContext.current
-        var showDialog2 by remember { mutableStateOf(false) }
-
-        if (showDialog2) {
-            AlertDialog(
-                onDismissRequest = { showDialog2 = false },
-                title = {
-                    Text(
-                        text = "Ваша заявка принята!",
-                        style = type_2.copy(
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                },
-                text = {
-                    Text("В ближайшее время с вами свяжется специалист")
-                },
-                confirmButton = {
-                    Button(
-                        onClick = {
-                            showDialog2 = false
-                            context.startActivity(Intent(context, MainActivity::class.java))
-                            (context as Activity).finish()
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
-                    ) {
-                        Text("На главную", style = type_Button)
-                    }
-                }
-            )
-        }
 
         Column(
             verticalArrangement = Arrangement.spacedBy(24.dp),

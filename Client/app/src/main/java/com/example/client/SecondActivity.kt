@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -80,43 +79,9 @@ class SecondActivity : ComponentActivity() {
         var currentImageIndex by remember { mutableIntStateOf(0) }
         var showDialog by remember { mutableStateOf(false) }
         val scrollState = rememberScrollState()
-        var showDialog2 by remember { mutableStateOf(false) }
         var list by remember { mutableStateOf<List<ServiceResponse>>(emptyList()) }
         var isLoading by remember { mutableStateOf<Boolean>(true) }
         var error by remember { mutableStateOf<String?>(null) }
-
-        if (showDialog2) {
-            AlertDialog(
-                onDismissRequest = { showDialog2 = false },
-                title = {
-                    Text(
-                        text = "Ваша заявка принята!",
-                        style = type_2.copy(
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                },
-                text = {
-                    Text("В ближайшее время с вами свяжется специалист")
-                },
-                confirmButton = {
-                    Button(
-                        onClick = {
-                            showDialog2 = false
-                            context.startActivity(Intent(context, MainActivity::class.java))
-                            (context as Activity).finish()
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
-                    ) {
-                        Text("На главную", style = type_Button)
-                    }
-                }
-            )
-        }
 
         LaunchedEffect(Unit) {
             try {
